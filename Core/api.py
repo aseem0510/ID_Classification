@@ -30,16 +30,6 @@ model.load_weights("./Checkpoints/MobileNett1.h5")
 # adding log file
 logger.add(open("./Checkpoints/client.log", "w"))
 
-count = 0
-def func():
-    global count
-    df = pd.read_csv("/home/aseem/Downloads/img_data.csv")
-    img = df["url"][count]
-    print(img)
-    count += 1
-    return img
-
-
 @app.post("/idClassification/", status_code=200)
 @profile
 async def id_classification(response: Response, request: Request):
@@ -89,7 +79,6 @@ async def id_classification(response: Response, request: Request):
         return final_response
 
     image = request["url"]
-    image = func()
 
     # for handling number
     try:
