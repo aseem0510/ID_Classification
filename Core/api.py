@@ -255,6 +255,7 @@ async def id_classification(response: Response, request: Request):
         result = prediction.argmax(axis=-1)
 
         ans = str(result[0])
+        print(ans)
 
         if ans == "0":
             classes = "Aadhar Card"
