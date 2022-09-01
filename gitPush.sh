@@ -13,29 +13,48 @@ read token
 # Ask for repository name
 echo "Enter repository name"
 read repoName
+
+# Ask for branch name
+echo "Enter branch name"
+read branchName
+
 # Check if repository exists at GitHub
 curl "https://api.github.com/repos/${username}/${repoName}.git"
 # If repository exits then
 
 if [ $? -eq 0 ]; then
+
     cd $repoName
+
     # Display unstaged files
     git status
     git remote set-url origin https://${token}@github.com/${username}/${repoName}.git
+
     # If there are any uncommited and unstatged files, ask user to commit them
     if [ "$(git status --porcelain)" ]; then
+
         echo "There are uncommited and unstatged files. Commit them before pushing"
         echo "Enter commit message"
         read commitMessage
+
+        VAR1="master"
+
         git add .
         git commit -m "$commitMessage"
-        git push origin master
+
+        if [ ${branchName} = "$VAR1" ]; then
+            git push origin master
+        else
+            git checkout -b "$branchName"
+            git push -u origin "$branchName"
+        fi
+        
         echo "Files pushed to GitHub"
         # else push all commited and staged files to remote repo
     else
-        git push origin master
+        git push
         echo "Files pushed to GitHub"
-        
+
     fi
     #Echo message if there is no files to commit, stage or push
     if [ "$(git status --porcelain)" ]; then
@@ -45,5 +64,3 @@ else
     echo "Repository does not exist"
 fi
 
-
-# End of script
