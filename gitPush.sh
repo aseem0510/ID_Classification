@@ -29,11 +29,11 @@ if [ $? -eq 0 ]; then
         read commitMessage
         git add .
         git commit -m "$commitMessage"
-        git push
+        git push origin master
         echo "Files pushed to GitHub"
         # else push all commited and staged files to remote repo
     else
-        git push
+        git push origin master
         echo "Files pushed to GitHub"
         
     fi
