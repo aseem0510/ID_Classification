@@ -1,0 +1,11 @@
+kind: Service 
+apiVersion: v1 
+metadata:
+  name: idclassification
+spec:
+  type: LoadBalancer
+  selector:
+    app: idclassification
+  ports:
+    - port: 8000
+  
