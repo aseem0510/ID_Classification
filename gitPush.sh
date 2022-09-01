@@ -20,8 +20,8 @@ read branchName
 
 # Check if repository exists at GitHub
 curl "https://api.github.com/repos/${username}/${repoName}.git"
-# If repository exits then
 
+# If repository exits then
 if [ $? -eq 0 ]; then
 
     cd $repoName
