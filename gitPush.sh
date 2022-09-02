@@ -50,13 +50,13 @@ if [ $? -eq 0 ]; then
             if [ ${branchName} = "$VAR1" ]; then
                 git push origin master
             else
-                git push -u origin "$branchName"
+                git push
                 
             fi
         
         else
             git checkout -b "$branchName"
-            git push -u origin "$branchName"
+            git push
             
 	fi
         
