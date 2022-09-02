@@ -20,8 +20,8 @@ read branchName
 
 # Check if repository exists at GitHub
 curl "https://api.github.com/repos/${username}/${repoName}.git"
-# If repository exits then
 
+# If repository exits then
 if [ $? -eq 0 ]; then
 
     cd $repoName
@@ -41,18 +41,47 @@ if [ $? -eq 0 ]; then
 
         git add .
         git commit -m "$commitMessage"
-
-        if [ ${branchName} = "$VAR1" ]; then
-            git push origin master
+        
+        if [ `git branch --list $branchName` ]; then
+            
+            git checkout "$branchName"
+	    git branch --list "$branchName"
+	    echo "aseem"
+            
+            if [ ${branchName} = "$VAR1" ]; then
+                git push origin master
+            else
+                git push -u origin "$branchName"
+                
+            fi
+        
         else
             git checkout -b "$branchName"
             git push -u origin "$branchName"
-        fi
+            
+	fi
         
         echo "Files pushed to GitHub"
         # else push all commited and staged files to remote repo
     else
-        git push
+        
+        if [ `git branch --list $branchName` ]; then
+            
+            git checkout "$branchName"
+            
+            if [ ${branchName} = "$VAR1" ]; then
+                git push origin master
+            else
+                git push -u origin "$branchName"
+                
+            fi
+        
+        else
+            git checkout -b "$branchName"
+            git push -u origin "$branchName"
+            
+	fi
+
         echo "Files pushed to GitHub"
 
     fi
@@ -63,4 +92,4 @@ if [ $? -eq 0 ]; then
 else
     echo "Repository does not exist"
 fi
-
+    
