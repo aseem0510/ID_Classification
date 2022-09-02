@@ -62,6 +62,8 @@ if [ $? -eq 0 ]; then
         echo "Files pushed to GitHub."
         # else push all commited and staged files to remote repo
     else
+	
+	echo "inside"
         
         if [ `git branch --list $branchName` ]; then
             
