@@ -46,7 +46,6 @@ if [ $? -eq 0 ]; then
             
             git checkout "$branchName"
 	    git branch --list "$branchName"
-	    echo "aseem"
             
             if [ ${branchName} = "$VAR1" ]; then
                 git push origin master
