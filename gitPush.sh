@@ -45,6 +45,8 @@ if [ $? -eq 0 ]; then
         if [ `git branch --list $branchName` ]; then
             
             git checkout "$branchName"
+	    git branch --list "$branchName"
+	    echo "aseem"
             
             if [ ${branchName} = "$VAR1" ]; then
                 git push origin master
@@ -80,7 +82,7 @@ if [ $? -eq 0 ]; then
             
 	fi
 
-        echo "Files pushed to GitHub."
+        echo "Files pushed to GitHub"
 
     fi
     #Echo message if there is no files to commit, stage or push
