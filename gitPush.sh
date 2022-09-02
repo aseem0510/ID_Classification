@@ -41,26 +41,44 @@ if [ $? -eq 0 ]; then
 
         git add .
         git commit -m "$commitMessage"
-
-        if [ ${branchName} = "$VAR1" ]; then
-            git push origin master
+        
+        if [ `git branch --list $branchName` ]; then
+            
+            git checkout "$branchName"
+            
+            if [ ${branchName} = "$VAR1" ]; then
+                git push origin master
+            else
+                git push -u origin "$branchName"
+                
+            fi
+        
         else
             git checkout -b "$branchName"
-	    git checkout "$branchName"
             git push -u origin "$branchName"
-        fi
+            
+	fi
         
         echo "Files pushed to GitHub"
         # else push all commited and staged files to remote repo
     else
         
-	if [ ${branchName} = "$VAR1" ]; then
-            git push origin master
+        if [ `git branch --list $branchName` ]; then
+            
+            git checkout "$branchName"
+            
+            if [ ${branchName} = "$VAR1" ]; then
+                git push origin master
+            else
+                git push -u origin "$branchName"
+                
+            fi
+        
         else
             git checkout -b "$branchName"
-            git checkout "$branchName"
             git push -u origin "$branchName"
-        fi
+            
+	fi
 
         echo "Files pushed to GitHub."
 
