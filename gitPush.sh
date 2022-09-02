@@ -46,6 +46,7 @@ if [ $? -eq 0 ]; then
             git push origin master
         else
             git checkout -b "$branchName"
+	    git checkout "$branchName"
             git push -u origin "$branchName"
         fi
         
