@@ -63,7 +63,24 @@ if [ $? -eq 0 ]; then
         echo "Files pushed to GitHub"
         # else push all commited and staged files to remote repo
     else
-	git push
+        
+        if [ `git branch --list $branchName` ]; then
+            
+            git checkout "$branchName"
+            
+            if [ ${branchName} = "$VAR1" ]; then
+                git push origin master
+            else
+                git push -u origin "$branchName"
+                
+            fi
+        
+        else
+            git checkout -b "$branchName"
+            git push -u origin "$branchName"
+            
+	fi
+
         echo "Files pushed to GitHub"
 
     fi
