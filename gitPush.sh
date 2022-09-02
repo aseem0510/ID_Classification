@@ -53,6 +53,7 @@ if [ $? -eq 0 ]; then
         # else push all commited and staged files to remote repo
     else
         git push
+	echo "aseeeeeeeeeeeemmmmmm"
         echo "Files pushed to GitHub"
 
     fi
