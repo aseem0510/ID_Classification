@@ -59,7 +59,7 @@ if [ $? -eq 0 ]; then
             
 	fi
         
-        echo "Files pushed to GitHub"
+        echo "Files pushed to GitHub."
         # else push all commited and staged files to remote repo
     else
         
