@@ -62,7 +62,7 @@ if [ $? -eq 0 ]; then
             git push -u origin "$branchName"
         fi
 
-        echo "Files pushed to GitHub"
+        echo "Files pushed to GitHub."
 
     fi
     #Echo message if there is no files to commit, stage or push
