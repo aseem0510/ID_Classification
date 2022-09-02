@@ -59,7 +59,7 @@ if [ $? -eq 0 ]; then
             git checkout -b "$branchName"
             git push -u origin "$branchName"
         fi
-
+	echo "nothing changed"
         echo "Files pushed to GitHub"
 
     fi
